@@ -1,16 +1,16 @@
 import React from 'react';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-// import goatShape from '../../helpers/propz/goatShape';
+import employeeShape from '../../helpers/propz/employeeShape';
 import Employee from '../Employee/Employee';
 
 import './AllEmployees.scss';
 
 class AllEmployees extends React.Component {
-  // static propTypes = {
-  //   goats: PropTypes.arrayOf(goatShape),
-  // }
+  static propTypes = {
+    employees: PropTypes.arrayOf(employeeShape.employeeShape),
+  }
 
   render() {
     const { employees } = this.props;

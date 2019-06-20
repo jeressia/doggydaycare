@@ -1,16 +1,17 @@
 import React from 'react';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-// import goatShape from '../../helpers/propz/goatShape';
+import dogShape from '../../helpers/propz/dogShape';
+
 import Dog from '../Dog/Dog';
 
 import './Dogpen.scss';
 
 class Dogpen extends React.Component {
-  // static propTypes = {
-  //   goats: PropTypes.arrayOf(goatShape),
-  // }
+  static propTypes = {
+    dogs: PropTypes.arrayOf(dogShape.dogShape),
+  }
 
   render() {
     const { dogs } = this.props;
@@ -18,7 +19,9 @@ class Dogpen extends React.Component {
       <Dog key={dog.id} dog={dog} />
     ));
     return (
-      <div className="Dogpen d-flex flex-wrap">
+      <div class="d-flex flex-wrap">
+        <div className="Dogpen">
+      </div>
         { makeDogs }
       </div>
     );
