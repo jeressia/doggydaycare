@@ -1,0 +1,52 @@
+.card-img-top {
+  height: 168px;
+  object-fit: contain;
+  margin: 15px;
+}
+
+.card {
+  margin: 10px;
+  text-align: center;
+  padding: 0px;
+
+}
+
+.Dogpen{
+  display: flex;
+}
+
+.card-title{
+  text-transform: uppercase;
+}
+
+#yes {
+  background-color: #e9e9e9;
+}
+
+#no {
+  background-color: red;
+}
+
+#maybe {
+  background-color: #ffc400;
+}
+
+.drop-off{
+  font-size: 11px;
+}
+
+#White{
+  color: white;
+}
+
+#Blue{
+  color: blue;
+}
+
+#Grey{
+  color: rgb(90, 90, 90);
+}
+
+#Tan{
+  color: tan;
+}

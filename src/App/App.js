@@ -28,11 +28,17 @@ class App extends React.Component {
     return (
       <div>
         <div className="App">
-        <div>Doggy Daycare</div>
+        <h1 className="section-title">Doggy Daycare</h1>
+        <h5 className="section-title">Dogs In Care</h5>
+        <div class="legend d-flex">Legend:
+        <div class="red">Not Friendly</div>
+        <div class="yellow">May Be Friendly</div>
+        <div class="white">Friendly</div>
+        </div>
         <DogPen dogs={ dogs }/>
-        <h1>My Employees</h1>
+        <h5 className="section-title">My Employees</h5>
         <AllEmployees employees={ employees }/>
-      </div>
+        </div>
       </div>
     );
   }
