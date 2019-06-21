@@ -29,14 +29,14 @@ class App extends React.Component {
       <div>
         <div className="App">
         <h1 className="section-title">Doggy Daycare</h1>
-        <h4 className="section-title">Dogs In Care</h4>
+        <h5 className="section-title">Dogs In Care</h5>
         <div class="legend d-flex">Legend:
         <div class="red">Not Friendly</div>
         <div class="yellow">May Be Friendly</div>
         <div class="white">Friendly</div>
         </div>
         <DogPen dogs={ dogs }/>
-        <h4 className="section-title">My Employees</h4>
+        <h5 className="section-title">My Employees</h5>
         <AllEmployees employees={ employees }/>
         </div>
       </div>
