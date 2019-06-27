@@ -1,28 +1,31 @@
 import React from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
-import PropTypes from 'prop-types';
-
-import dogShape from '../../helpers/propz/dogShape';
-
+import dogData from '../../helpers/data/dogData';
 import Dog from '../Dog/Dog';
 
 import './Dogpen.scss';
 
 class Dogpen extends React.Component {
-  static propTypes = {
-    dogs: PropTypes.arrayOf(dogShape.dogShape),
+  state = {
+    dogs: [],
+  }
+
+  componentDidMount() {
+    dogData.getMyDogs(firebase.auth().currentUser.uid)
+      .then(dogs => this.setState({ dogs }))
+      .catch(err => console.error('uh-oh, dogs', err));
   }
 
   render() {
-    const { dogs } = this.props;
-    const makeDogs = dogs.map(dog => (
+    const dogComponents = this.state.dogs.map(dog => (
       <Dog key={dog.id} dog={dog} />
     ));
+
     return (
-      <div class="d-flex flex-wrap">
         <div className="Dogpen">
-      </div>
-        { makeDogs }
+        { dogComponents }
       </div>
     );
   }
