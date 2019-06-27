@@ -1,19 +1,12 @@
 import React from 'react';
 
-
-// import goatShape from '../../helpers/propz/goatShape';
-
 import './Dog.scss';
 
 class Dog extends React.Component {
-  // static propTypes = {
-  //   goat: goatShape.goatShape,
-  // }
-
   render() {
     const { dog } = this.props;
     return (
-      <div className="Dog col-3">
+      <div className="Dog">
         <div className="card" id={dog.isfriendly}>
             <div className="card-body">
                 <h5 className="card-title">{dog.name}</h5>

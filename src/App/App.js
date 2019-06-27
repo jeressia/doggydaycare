@@ -1,44 +1,51 @@
 import React from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
-
-import myDogs from './dogs';
-import myEmployees from './employees';
-
-import DogPen from '../components/Dogpen/Dogpen';
-import AllEmployees from '../components/AllEmployees/AllEmployees';
+import MyNavbar from '../components/MyNavbar/MyNavbar';
+import Auth from '../components/Auth/Auth';
+import Home from '../components/Home/Home';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 
+import fbConnection from '../helpers/data/connection';
+
+fbConnection();
 
 class App extends React.Component {
   state = {
-    dogs: [],
-    employees: [],
+    authed: false,
   }
 
   componentDidMount() {
-    this.setState({ dogs: myDogs });
-    this.setState({ employees: myEmployees });
+    this.removelistener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authed: true });
+      } else {
+        this.setState({ authed: false });
+      }
+    });
   }
 
+  componentWillUnmount() {
+    this.removelistener();
+  }
+
+
   render() {
-    const { dogs } = this.state;
-    const { employees } = this.state;
+    const { authed } = this.state;
+    const loadComponent = () => {
+      if (authed) {
+        return <Home />;
+      }
+      return <Auth />;
+    };
+
     return (
-      <div>
-        <div className="App">
-        <h1 className="section-title">Doggy Daycare</h1>
-        <h5 className="section-title">Dogs In Care</h5>
-        <div class="legend d-flex">Legend:
-        <div class="red">Not Friendly</div>
-        <div class="yellow">May Be Friendly</div>
-        <div class="white">Friendly</div>
-        </div>
-        <DogPen dogs={ dogs }/>
-        <h5 className="section-title">My Employees</h5>
-        <AllEmployees employees={ employees }/>
-        </div>
+      <div className="App">
+        <MyNavbar authed={this.state.authed} />
+        {loadComponent()}
       </div>
     );
   }
