@@ -22,19 +22,25 @@ class Walks extends React.Component {
     dogs: [],
   }
 
-  componentDidMount() {
+  getWalks = () => {
     walkData.getMyWalks()
-      .then(walks => this.setState({ walks }));
+      .then(walks => this.setState({ walks }))
+      .catch(err => console.error('uh-oh, no walks', err));
+  }
+
+  componentDidMount() {
     employeeData.getMyEmployees()
       .then(employees => this.setState({ employees }));
     dogData.getMyDogs()
       .then(dogs => this.setState({ dogs }))
       .catch(err => console.error('uh-oh, walks', err));
+
+    this.getWalks();
   }
 
   deleteEvent = (walkId) => {
     walkData.deleteWalk(walkId)
-      .then(walks => this.setState({ walks }))
+      .then(() => this.getWalks())
       .catch(err => console.error('not deleted', err));
   }
 
@@ -43,7 +49,7 @@ class Walks extends React.Component {
       const { dogs, employees } = this.state;
       const dog = dogs.find(d => d.id === walk.dogId);
       const employee = employees.find(e => e.id === walk.employeeId);
-      return <SingleWalk key={walk.id} walk={walk} dog={dog || {}} employee={employee || {}} deleteEvent={this.deleteEvent}/>;
+      return <SingleWalk key={walk.id} walk={walk || {}} dog={dog || {}} employee={employee || {}} deleteEvent={this.deleteEvent}/>;
     });
 
 
