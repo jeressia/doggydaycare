@@ -1,8 +1,4 @@
 import React from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-
-import propTypes from 'prop-types';
 
 import employeeShape from '../../helpers/propz/employeeShape';
 import employeeData from '../../helpers/data/employeeData';
@@ -20,7 +16,7 @@ class AllEmployees extends React.Component {
   }
 
   componentDidMount() {
-    employeeData.getMyEmployees(firebase.auth().currentUser.uid)
+    employeeData.getMyEmployees()
       .then(employees => this.setState({ employees }))
       .catch(err => console.error('uh-oh, employees', err));
   }
