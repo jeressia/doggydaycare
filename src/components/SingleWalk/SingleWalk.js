@@ -20,7 +20,6 @@ export class Walk extends Component {
     const { walk, deleteEvent } = this.props;
     e.preventDefault();
     deleteEvent(walk.id);
-    console.error('button works');
   }
 
   render() {
